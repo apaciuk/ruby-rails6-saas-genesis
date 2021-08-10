@@ -1,0 +1,79 @@
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#user_avatar').on('change', function(event) {
+        var files = event.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          $('#target').html(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
+    });
+  </script>
+<% end %>
+<%= simple_form_for @user do |f| %>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Profile Picture</h4>
+  </div>
+  <div class="card-content">
+    <div id="target" class="profile-edit-image">
+      <%= image_tag @user.avatar.url(:thumb) if @user.avatar.exists? %>
+      <%= @user.abbr if !@user.avatar.exists? %>
+    </div>
+    <div class="profile-edit-image-content">
+      <h4 style="margin-top:0px;">Upload your photo...</h4>
+      <p>Photo should be at least 300px x 300px</p>
+      <label for="user_avatar" class="custom-file-upload btn btn-primary btn-fill btn-wd">
+        <i class="fa fa-cloud-upload"></i> Upload photo
+        <%= f.input :avatar,as: :file, multiple: true, label: false %>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Basic Information</h4>
+      </div>
+      <div class="card-content">
+        <div class="form-group">
+          <%= f.label :name, required:false %>
+          <%= f.input :name, label: false, :input_html => {class: "form-control border-input"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, required:false %>
+          <%= f.input :email, label: false, :input_html => {class: "form-control border-input"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Change Password</h4>
+      </div>
+      <div class="card-content">
+        <div class="form-group">
+          <%= f.label :password, "New Password", required:false %>
+            <%= f.input :password, label: false, :input_html => {class: "form-control border-input", autocomplete: "off"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Confirm new password", required:false %>
+          <%= f.input :password_confirmation, label: false, :input_html => {class: "form-control border-input", autocomplete: "off"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  <%= f.button :submit,class: "btn btn-primary btn-fill btn-wd" %>
+</div>
+<% end %>

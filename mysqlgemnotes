@@ -1,0 +1,14 @@
+$ sudo apt-get install build-essential libmysqlclient-dev
+
+
+
+
+$ export LDFLAGS="-L/usr/local/opt/openssl/lib"
+$ export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+
+
+$ gem install mysql2 -v '0.5.2' --source 'https://rubygems.org/' -- --with-cppflags=-I/usr/local/opt/openssl/include --with-ldflags=-L/usr/local/opt/openssl/lib
+
+
+(Ubuntu)

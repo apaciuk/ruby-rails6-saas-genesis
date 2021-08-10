@@ -1,0 +1,24 @@
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <a href="http://www.creative-tim.com" class="simple-text">SaaS Genesis</a>
+    </div>
+
+    <ul class="nav">
+      <li class="<%= active_menu root_path %>">
+        <%= link_to root_path do %>
+          <i class="ti-panel"></i>
+          <p>Dashboard</p>
+        <% end %>
+      </li>
+      <% if current_user.admin? %>
+        <li class="<%= active_menu users_path %>">
+          <%= link_to users_path do %>
+            <i class="fa fa-users"></i>
+            <p>Team Members</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

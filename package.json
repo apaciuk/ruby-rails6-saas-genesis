@@ -1,0 +1,23 @@
+{
+  "name": "ruby-rails6-saas-genesis",
+  "version": "1.0.0",
+  "description": "Rails 6 SaaS Boilerplate with many features",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Anthony McGowan",
+  "license": "MIT",
+  "dependencies": {
+    "@rails/webpacker": "5.4.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.2"
+  }
+}
